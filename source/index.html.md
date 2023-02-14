@@ -3,8 +3,8 @@ title: API Reference 1.0
 
 language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
   - shell
-  - javascript
-  - python
+  # - javascript
+  # - python
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -71,7 +71,7 @@ This example API documentation page was created with [Slate](https://github.com/
 
 > 返回参数
 
-```javascript
+```shell
 {
   status: 1, API Key 状态，0（可用）、1（不可用）
 }
