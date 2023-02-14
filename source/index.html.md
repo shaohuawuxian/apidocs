@@ -44,7 +44,7 @@ This example API documentation page was created with [Slate](https://github.com/
 
 | **参数**     | **是否必须** | **类型** | **说明**                                                                                                                                                                                  |
 | ------------ | ------------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| restrictions | false        |          | 新建 API Key 权限，账户（Account）、充值（Deposit）、提现（Withdraw）、外部资产（externalAssets）、发币（externalAssets）、内部代币管理（tokenManagement）、所有权限（All）；默认所有权限 |
+| ```restrictions``` | false        |          | 新建 API Key 权限，账户（Account）、充值（Deposit）、提现（Withdraw）、外部资产（externalAssets）、发币（externalAssets）、内部代币管理（tokenManagement）、所有权限（All）；默认所有权限 |
 
 **返回参数**
 

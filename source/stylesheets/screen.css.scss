@@ -446,24 +446,28 @@ body {
 
     th {
       padding: 5px 10px;
-      border-bottom: 1px solid #ccc;
       vertical-align: bottom;
+      border-top: 1px solid #E6ECF2;
+      white-space: nowrap;
+      line-height: 1.6;
     }
 
     td {
       padding: 10px;
+      border-bottom: 1px solid #E6ECF2;
+      line-height: 1.6;
     }
 
     tr:last-child {
-      border-bottom: 1px solid #ccc;
+      // border-bottom: 1px solid #ccc;
     }
 
     tr:nth-child(odd) > td {
-      background-color: lighten($main-bg, 4.2%);
+      background-color: white;
     }
 
     tr:nth-child(even) > td {
-      background-color: lighten($main-bg, 2.4%);
+      background-color: #fbfcfd;
     }
   }
 
