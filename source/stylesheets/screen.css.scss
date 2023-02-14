@@ -427,8 +427,11 @@ body {
 
   hr {
     margin: 2em 0;
-    border-top: 2px solid $examples-bg;
-    border-bottom: 2px solid $main-bg;
+    height: 1px;
+    background: #e6ecf2;
+    border: none;
+    margin-left: 28px;
+    margin-right: calc(50% + 28px);
   }
 
   table {
@@ -447,14 +450,14 @@ body {
     th {
       padding: 5px 10px;
       vertical-align: bottom;
-      border-top: 1px solid #E6ECF2;
+      border-top: 1px solid #e6ecf2;
       white-space: nowrap;
       line-height: 1.6;
     }
 
     td {
       padding: 10px;
-      border-bottom: 1px solid #E6ECF2;
+      border-bottom: 1px solid #e6ecf2;
       line-height: 1.6;
     }
 
