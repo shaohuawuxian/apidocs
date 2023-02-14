@@ -1,14 +1,14 @@
 ---
 title: API Reference 1.0
 
-language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
-  - shell
-  # - javascript
-  # - python
+# language_tabs:# must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
+# - javascript
+# - javascript
+# - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  # - <a href='#'>Sign Up for a Developer Key</a>
+  # - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -40,6 +40,57 @@ This example API documentation page was created with [Slate](https://github.com/
 
 `POST api/v1/apikey/create `
 
+```javascript
+{
+  "timezone": "UTC",
+  "serverTime": 1565246363776,
+  "rateLimits": [
+    {
+      //这些在"限制种类 (rateLimitType)"下的"枚举定义"部分中定义
+      //所有限制都是可选的
+    }
+  ],
+  "exchangeFilters": [
+    //这些是"过滤器"部分中定义的过滤器
+    //所有限制都是可选的
+  ],
+  "symbols": [
+    {
+      "symbol": "ETHBTC",
+      "status": "TRADING",
+      "baseAsset": "ETH",
+      "baseAssetPrecision": 8,
+      "quoteAsset": "BTC",
+      "quotePrecision": 8,
+      "quoteAssetPrecision": 8,
+      "orderTypes": [
+        "LIMIT",
+        "LIMIT_MAKER",
+        "MARKET",
+        "STOP_LOSS",
+        "STOP_LOSS_LIMIT",
+        "TAKE_PROFIT",
+        "TAKE_PROFIT_LIMIT"
+      ],
+      "icebergAllowed": true,
+      "ocoAllowed": true,
+      "quoteOrderQtyMarketAllowed": false,
+      "allowTrailingStop": false,
+      "isSpotTradingAllowed": true,
+      "isMarginTradingAllowed": true,
+      "cancelReplaceAllowed": false,
+      "filters": [
+        //这些在"过滤器"部分中定义
+        //所有限制都是可选的
+      ],
+      "permissions": ["SPOT", "MARGIN"],
+      "defaultSelfTradePreventionMode": "NONE",
+      "allowedSelfTradePreventionModes": ["NONE"]
+    }
+  ]
+}
+```
+
 **参数**
 
 | **参数**     | **是否必须** | **类型** | **说明**                                                                                                                                                                                  |
@@ -68,14 +119,6 @@ This example API documentation page was created with [Slate](https://github.com/
 | ------ | -------- | ---- | ------------- |
 | apiId  | false    |      | ID 具有唯一性 |
 | apiKey | false    |      | API Key       |
-
-> 返回参数
-
-```shell
-{
-  status: 1, API Key 状态，0（可用）、1（不可用）
-}
-```
 
 # 账户(account)
 
