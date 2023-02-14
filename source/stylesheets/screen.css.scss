@@ -373,9 +373,11 @@ body {
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    background-color: #fdfdfd;
+    // border-top: 1px solid #ccc;
+    // border-bottom: 1px solid #ccc;
+    box-shadow: 0 1px 0 0 #e6ecf2;
+    background-color: $main-bg;
+    color: #1c242c;
   }
 
   h1:first-child,
@@ -389,7 +391,7 @@ body {
     font-size: 19px;
     margin-top: 4em;
     margin-bottom: 0;
-    border-top: 1px solid #ccc;
+    // border-top: 1px solid #ccc;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
     background-image: linear-gradient(
