@@ -2,100 +2,47 @@
 
 ## 执行提现
 
-api/v1/assets/withdraw/apply
-
-POST
+`POST api/v1/assets/withDraw`
 
 **请求参数**
 
-| **参数**  | **是否必须** | **类型** | **说明**            |
+| **参数**  | **是否必填** | **参数类型** | **描述说明**            |
 | --------- | ------------ | -------- | ------------------- |
-| apiID     | true         |          | APIID 具有唯一性    |
-| accountId | true         |          | 账户 id，具有唯一性 |
-| token     | true         |          | 币种                |
-| address   | true         |          | 提币地址            |
-| network   | true         |          | 转账网络            |
-| qty       | true         |          | 数量                |
+| thirdId     | 是       |   String       | 三方订单id        |
+| accout    | 是         |   String       | 提现账户id        |
+| symbol     | 是        | String         | token          |
+| amount    | 是         |  String        | 数量             |
+| chain     | 是         |  String        | 链名称            |
+| addr      | 是         |   String       | 提现地址          |
+|isSync     |是          |	Boolean       |是否同步执行         |
+
+> 示例请求
+```JavaScript
+{
+    "thirdId": "11111",
+    "accout": "123",
+    "symbol": "HUI",
+    "amount": "20",
+    "chain": "hui",
+    "addr": "0xAb41dEdC0B7333fD76A0619A145a4Aa3492cB017",
+    "isSync": true
+}
+```
 
 **返回参数**
 
-| **参数** | **类型** | **说明** |
-| -------- | -------- | -------- |
-
-## 获取提币历史
-
-api/v1/assets/withdraw/history
-
-GET
-
-**请求参数**
-
-| **参数**  | **是否必须** | **类型** | **说明**            |
+| **参数**  | **是否必填** | **参数类型** | **描述说明**            |
 | --------- | ------------ | -------- | ------------------- |
-| apiID     | true         |          | APIID 具有唯一性    |
-| accountId | true         |          | 账户 id，具有唯一性 |
-| startTime | false        |          | 币种                |
-| endTime   | false        |          | 提币地址            |
-| token     | false        |          | 转账网络            |
-| status    | false        |          | 数量                |
-| txid      | false        |          | 交易哈希            |
+| code     | 是       |   Integer       | 0为ok 其余为错误        |
+| msg    | 是         |   String       | 错误描述        |
+| data     | 是        | Object         |           |
+| dataOrderId    | 是         |  String        | 订单id        |
+| dataThirdId     | 是         |  String        | 三方订单id    |
+| dataSucess      | 是         |   Boolean       | 是否成功     |
 
-**返回参数**
 
-| **参数** | **类型** | **说明** |
-| -------- | -------- | -------- |
-| time     |          | 时间     |
-| token    |          | 代币     |
-| qty      |          | 数量     |
-| address  |          | 提现地址 |
-| txid     |          | 交易哈希 |
+> 返回示例
 
-## 区块确认数
-
-api/v1/assets/deposit/block/number
-
-GET
-
-**请求参数**
-
-| **参数**  | **是否必须** | **类型** | **说明**            |
-| --------- | ------------ | -------- | ------------------- |
-| apiID     | true         |          | APIID 具有唯一性    |
-| accountId | true         |          | 账户 id，具有唯一性 |
-| startTime | false        |          | 币种                |
-| endTime   | false        |          | 提币地址            |
-| token     | false        |          | 转账网络            |
-| status    | false        |          | 数量                |
-| txid      | false        |          | 交易哈希            |
-
-**返回参数**
-
-| **参数** | **类型** | **说明** |
-| -------- | -------- | -------- |
-| time     |          | 时间     |
-| token    |          | 代币     |
-| qty      |          | 数量     |
-| address  |          | 提现地址 |
-
----
-
-## 查询最小提现金额
-
-小于最小金额将无法提现
-
-api/v1/assets/withdraw/minsize
-
-POST
-
-**请求参数**
-
-| **参数** | **是否必须** | **类型** | **说明** |
-| -------- | ------------ | -------- | -------- |
-| token    | true         |          | 代币     |
-| network  | true         |          | 网络     |
-
-**返回参数**
-
-| **参数** | **类型** | **说明**     |
-| -------- | -------- | ------------ |
-| minSize  |          | 最小充值金额 |
+```JavaScript
+{"code":-1000,"msg":"notify withdrawl fail","data":{"orderId":"","thirdId":"11111","sucess":false}}
+```
