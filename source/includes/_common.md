@@ -1,10 +1,8 @@
 # 所有链-所有币
 
-## 1.获取所有链
+## 获取所有链
 
-请求方式: GET
-
-请求路径:api/v1/config/chain/list
+`GET api/v1/config/chain/list`
 
 返回参数:
 
@@ -13,7 +11,7 @@
 | confirmationNumber | int | 区块确认数 |
 | chain     | string | 链名称   |
 
-返回示例:
+>返回示例:
 ```javascript
 {
   "code": 0,
@@ -27,11 +25,11 @@
 }
 ```
 
-## 2.获取所有币
+## 获取所有币
 
-请求方式: GET
+请求方式: 
 
-请求路径:api/v1/config/token/list?chain=
+`GET api/v1/config/token/list?chain=`
 
 请求参数:
 
@@ -47,7 +45,8 @@
 | decimals         | int   | 精度              |
 | mappedSymbol         | string   | huione链内代币符号              |
 | symbol         | string   | 代币符号              |
-返回示例:
+
+>返回示例:
 
 ```javascript
 {
@@ -72,12 +71,9 @@
 
 ## 3.所有币配置
 
-请求方式: GET
-
-请求路径:api/v1/config/token/config
+`GET api/v1/config/token/config`
 
 返回参数:
-
 
 | **字段**             | **类型** | **描述**           |
 | -------------------- | -------- | ------------------ |
@@ -89,7 +85,7 @@
 | minWithdraw             | float64  | 最低提现额度         |
 | minPay            | float64  | 最低充值额度       |
 
-返回示例:
+>返回示例:
 
 ```javascript
 {
@@ -110,9 +106,7 @@
 ```
 ## 4.获取提现手续费
 
-请求方式: POST
-
-请求路径:api/v1/config/token/fee
+`POST api/v1/config/token/fee`
 
 请求参数:
 
@@ -127,7 +121,8 @@
 | **字段**      | **类型** | **描述**            |
 | ------------- | -------- | ------------------- |
 | data         | float   | 手续费              |
-返回示例:
+
+>返回示例:
 
 ```javascript
 {
