@@ -22,7 +22,6 @@ includes:
   - transfer # 转账
   - tokenIssue # 发币
   - tokenManage # 代币管理
-  - errors
 
 search: true
 
