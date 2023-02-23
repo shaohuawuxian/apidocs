@@ -1,60 +1,105 @@
 # 账户(account)
 
+账户模块遵循[Api 调用规范](#45fa4e00db)，所以此处只提供调用需要的业务字段
+
 ## 创建账户
 
 `POST api/v1/account/create`
 
 **请求参数**
 
-| **参数** | **是否必须** | **类型** | **说明**                |
-| -------- | ------------ | -------- | ----------------------- |
-| apiID    | true         |          | ID 具有唯一性           |
-| userId   | true         |          | 用户 ID，业务方自己生成 |
+| **参数** | **是否必须** | **类型** | **说明**                                                                                                        |
+| -------- | ------------ | -------- | --------------------------------------------------------------------------------------------------------------- |
+| apiKey   | true         | string   |                                                                                                                 |
+| userId   | true         | string   | 用户 ID，业务方自己生成并控制在自己范围内唯一，可以是手机或者邮箱等，但需要保持一致（始终用手机或者始终用邮箱） |
 
 **返回参数**
 
-| **参数**    | **类型** | **说明**            |
-| ----------- | -------- | ------------------- |
-| accountId   |          | 账户 ID，具有唯一性 |
-| coin        |          | 代币                |
-| network     |          | 地址网络            |
-| chainAdress |          | 地址                |
+| **参数**  | **类型** | **说明**            |
+| --------- | -------- | ------------------- |
+| userId    | string   |                     |
+| accountId | string   | 账户 ID，具有唯一性 |
+| eth       | string   | eth 系链地址        |
+| btc       | string   | btc 链地址          |
+| trx       | string   | trx 系链地址        |
 
 ## 账户地址查询
 
-api/v1/account/address
-
-GET
+`GET api/v1/account/address`
 
 **请求参数**
 
-| **参数**  | **是否必须** | **类型** | **说明**            |
-| --------- | ------------ | -------- | ------------------- |
-| apiID     | true         |          | ID 具有唯一性       |
-| accountId | true         |          | 账户 ID，具有唯一性 |
+| **参数**  | **是否必须** | **类型** | **说明**                |
+| --------- | ------------ | -------- | ----------------------- |
+| accountId | true         | string   | 账户 ID，具有全局唯一性 |
 
 **返回参数**
 
-| **参数**    | **类型** | **说明** |
-| ----------- | -------- | -------- |
-| coin        |          | 代币     |
-| network     |          | 地址网络 |
-| chainAdress |          | 地址     |
+| **参数**  | **类型** | **说明** |
+| --------- | -------- | -------- |
+| userId    | string   | 用户信息 |
+| accountId | string   | 账户 ID  |
+| eth       | string   | 链地址   |
+| btc       | string   | 链地址   |
+| trx       | string   | 链地址   |
+
+## 账户查询(通过用户名）
+
+`GET api/v1/account/queryUser`
+
+**请求参数**
+
+| **参数** | **是否必须** | **类型** | **说明** |
+| -------- | ------------ | -------- | -------- |
+| apiKey   | true         | string   |          |
+| userId   | true         | string   | 用户 ID  |
+
+**返回参数**
+
+| **参数**  | **类型** | **说明** |
+| --------- | -------- | -------- |
+| userId    | string   | 用户信息 |
+| accountId | string   | 账户 ID  |
+| eth       | string   | 链地址   |
+| btc       | string   | 链地址   |
+| trx       | string   | 链地址   |
+
+## 账户列表（翻页）
+
+`GET api/v1/account/list`
+
+**请求参数**
+
+| **参数** | **是否必须** | **类型** | **说明**                     |
+| -------- | ------------ | -------- | ---------------------------- |
+| apiKey   | true         | string   |                              |
+| start    | true         | int      | 账户注册的时间范围之起始时间 |
+| end      | true         | int      | 账户注册的时间范围之结束时间 |
+| page     |              | int      | 页号                         |
+| limit    |              | int      | 一页多少条记录               |
+
+**返回参数**
+
+| **参数**       | **类型** | **说明** |
+| -------------- | -------- | -------- |
+| list>userId    | string   | 用户信息 |
+| list>accountId | string   | 账户 ID  |
+| list>eth       | string   | 链地址   |
+| list>btc       | string   | 链地址   |
+| list>trx       | string   | 链地址   |
 
 ## 账户冻结
 
-api/v1/account/frozen/function
-
-POST
+`POST api/v1/account/frozen/function`
 
 **请求参数**
 
 | **参数**  | **是否必须** | **类型** | **说明**                                                         |
 | --------- | ------------ | -------- | ---------------------------------------------------------------- |
-| apiID     | true         |          | ID 具有唯一性                                                    |
-| accountId | true         |          | 账户 ID，具有唯一性                                              |
-| function  | false        |          | 账户功能：1（充值）、2（提现）、3（转账）、0（所有功能）；默认 3 |
-| coin      | false        |          | 代币名称，默认所有代币                                           |
+| apiKey    | true         | string   |                                                                  |
+| accountId | true         | string   | 账户 ID，具有唯一性性                                            |
+| function  | false        | int      | 账户功能：1（充值）、2（提现）、3（转账）、0（所有功能）；默认 3 |
+| symbol    | false        |          | 代币名称，默认所有代币                                           |
 | startTime | false        |          | 开始冻结时间（秒）                                               |
 | endTime   | false        |          | 结束冻结时间（秒）                                               |
 
@@ -65,15 +110,13 @@ POST
 
 ## 账户解封
 
-api/v1/account/unfrozen/function
-
-POST
+`POST api/v1/account/unfrozen/function `
 
 **请求参数**
 
 | **参数**  | **是否必须** | **类型** | **说明**                                                         |
 | --------- | ------------ | -------- | ---------------------------------------------------------------- |
-| apiID     | true         |          | ID 具有唯一性                                                    |
+| apiKey    | true         | string   |                                                                  |
 | accountId | true         |          | 账户 ID，具有唯一性                                              |
 | function  | false        |          | 账户功能：1（充值）、2（提现）、3（转账）、0（所有功能）；默认 3 |
 | coin      | false        |          | 代币名称，默认所有代币                                           |
@@ -87,17 +130,15 @@ POST
 
 ## 冻结账户资产
 
-api/v1/account/frozen/assets
-
-POST
+`POST api/v1/account/frozen/assets`
 
 **请求参数**
 
 | **参数**  | **是否必须** | **类型** | **说明**               |
 | --------- | ------------ | -------- | ---------------------- |
-| apiID     | true         |          | ID 具有唯一性          |
-| accountId | true         |          | 账户 ID，具有唯一性    |
-| coin      | false        |          | 代币名称，默认所有代币 |
+| apiKey    | true         | string   |                        |
+| accountId | true         | string   | 账户 ID，具有唯一性    |
+| symbol    | false        |          | 代币名称，默认所有代币 |
 | qty       | false        |          | 数量，默认全部         |
 | startTime | false        |          | 开始冻结时间（秒）     |
 | endTime   | false        |          | 结束冻结时间（秒）     |
@@ -109,17 +150,15 @@ POST
 
 ## 解冻账户资产
 
-api/v1/account/unfrozen/assets
-
-POST
+`POST api/v1/account/unfrozen/assets`
 
 **请求参数**
 
 | **参数**  | **是否必须** | **类型** | **说明**               |
 | --------- | ------------ | -------- | ---------------------- |
-| apiID     | true         |          | ID 具有唯一性          |
+| apiKey    | true         | string   |                        |
 | accountId | true         |          | 账户 ID，具有唯一性    |
-| coin      | false        |          | 代币名称，默认所有代币 |
+| symbol    | false        |          | 代币名称，默认所有代币 |
 | qty       | false        |          | 数量，默认全部         |
 | startTime | false        |          | 开始解冻时间（秒）     |
 | endTime   | false        |          | 结束解冻时间（秒）     |
@@ -131,16 +170,14 @@ POST
 
 ## 账户状态查询
 
-api/v1/account/status
-
-GET
+`GET api/v1/account/status`
 
 **请求参数**
 
 | **参数**  | **是否必须** | **类型** | **说明**            |
 | --------- | ------------ | -------- | ------------------- |
-| apiID     | true         |          | ID 具有唯一性       |
-| accountId | true         |          | 账户 ID，具有唯一性 |
+| apiKey    | true         | string   |                     |
+| accountId | true         | string   | 账户 ID，具有唯一性 |
 
 **返回参数**
 
@@ -153,22 +190,20 @@ GET
 
 ## 账户资产查询
 
-api/v1/account/assets
-
-GET
+`GET api/v1/account/assets`
 
 **请求参数**
 
 | **参数**  | **是否必须** | **类型** | **说明**            |
 | --------- | ------------ | -------- | ------------------- |
-| apiID     | true         |          | ID 具有唯一性       |
-| accountId | true         |          | 账户 ID，具有唯一性 |
+| apiKey    | true         | string   |                     |
+| accountId | true         | string   | 账户 ID，具有唯一性 |
 
 **返回参数**
 
 | **参数**          | **类型** | **说明**                                 |
 | ----------------- | -------- | ---------------------------------------- |
-| list>coin         |          | 代币名称                                 |
+| list>symbol       |          | 代币名称                                 |
 | list>assetsStatus |          | 代币状态：normal（正常）；frozen（冻结） |
 | list>qty          |          | 冻结数量                                 |
 | list>StartTime    |          | 开始冻结时间（秒）                       |
